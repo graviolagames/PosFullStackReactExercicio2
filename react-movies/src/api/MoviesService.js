@@ -1,10 +1,10 @@
 import axios from 'axios';
 
-const API_KEY = '3a6dacbb2c787551536f07cfc546eba1'
+const API_KEY = '56b4c9013f14cf2c157724cb24d70eb8'
 const BASE_URL = 'https://api.themoviedb.org/3/'
-const withBaseUrl = (path)=>`${BASE_URL}${path}?api_key = ${API_KEY}`
+const withBaseUrl = (path)=>`${BASE_URL}${path}?api_key=${API_KEY}`
 
-export class MovieService{
+export class MoviesService{
     
     static getMovies(){
         return axios(withBaseUrl(`movie/popular`))

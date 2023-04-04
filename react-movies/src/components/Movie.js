@@ -3,7 +3,7 @@ import {Link} from "react-router-dom"
 export const Movie = ({movie})=>(
     <div className = "movie-item"> 
         <div>
-            <img src = {`https://image.mdb.org/t/p/w200${movie.poster_path}`} alt = ""/>
+            <img src = {`https://image.tmdb.org/t/p/w200${movie.poster_path}`} alt = ""/>
         </div>
         <div className = "movie-excerpt">
             <h3>{movie.title}</h3>
