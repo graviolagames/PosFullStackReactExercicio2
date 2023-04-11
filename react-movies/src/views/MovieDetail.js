@@ -1,16 +1,9 @@
-import {useEffect,useState } from "react";
-import { MoviesService } from "../api/MoviesService";
 import { useParams } from "react-router-dom";
-
+import { useMovie } from "../hooks/useMovie";
+ 
 export function MovieDetail() {
-    const [movie, setMovie] = useState({});
     const { movieId } = useParams();
-    
-    useEffect(()=>{
-        MoviesService.getMovieDetail(movieId).then(({data})=>setMovie(data)
-        );
-    },[movieId]);
-    
+    const movie = useMovie(movieId);
     return (
         <section className="movie-detail">
             <h1>{movie.title}</h1>
