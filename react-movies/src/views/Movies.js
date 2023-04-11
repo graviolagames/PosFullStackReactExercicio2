@@ -1,26 +1,19 @@
 import { useEffect, useState } from "react";
 import { MoviesService } from "../api/MoviesService";
-import { Movie } from "../components/Movie";
-export const Movies = () => {
+import { MovieItem } from "../components/MovieItem";
+
+export function Movies() {
     const [movies, setMovies] = useState([]);
-    const getMovies = async () => {
-        const {
-            data: { results },
-        } = await MoviesService.getMovies();
-        setMovies(results);
-    };
-useEffect(() => {
-    getMovies();
-}, []);
+    // request
+    useEffect(() => {
+       MoviesService.getMovies().then(({data})=>{
+        const updatedMovies = data.results.map((movie)=>({...movie,image_url:`https://image.tmdb.org/t/p/w500/${movie.poster_path}`,}))
+        setMovies(updatedMovies);
+    })
+    }, []);
 return (
-    <div className="container">
-        <div className="row gy-5">
-            {movies.map((movie) => (
-                <div key={movie.id} className="col-3">
-                    <Movie movie={movie} />
-                </div>
-            ))}
-        </div>
-    </div>
+    <section className = "movies-list">
+        {movies.map((m)=><MovieItem movie={m}/>)}
+    </section>
     );
 };
